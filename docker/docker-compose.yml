@@ -1,0 +1,28 @@
+version: '3'
+services: 
+  dbservice:
+    container_name: mysqldb
+    image: mysql
+    environment: 
+      - MYSQL_ROOT_PASSWORD=mysql
+    volumes:
+      - ./data:/var/lib/mysql 
+    ports:
+      - 3306:3306
+    networks:
+      - blog-app-apis    
+  appservice:
+    build: ./
+    depends_on:
+      - dbservice
+    environment:
+      MYSQL_HOST: mysqldb  
+      MYSQL_USER: root
+      MYSQL_PASSWORD: mysql
+      bezkoder.openapi.dev-url: http://13.126.11.209:8085
+    ports:
+      - 8085:7171
+    networks:
+      - blog-app-apis   
+networks:
+  blog-app-apis:        
