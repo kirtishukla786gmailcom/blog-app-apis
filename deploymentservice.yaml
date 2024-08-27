@@ -18,6 +18,11 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080 # The port that the container is running on in the cluster
+        - name: spring-boot-k8s1
+          image: kirtishukla786/mysql # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3036 # The port that the container is running on in the cluster    
 
 
 ---
