@@ -14,15 +14,10 @@ spec:
     spec:
       containers:
         - name: spring-boot-k8s
-          image: kirtishukla786/blog-app-apis-appservice # Image that will be used to containers in the cluster
+          image: kirtishukla786/blog-app-apis # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8085 # The port that the container is running on in the cluster
-        - name: spring-boot-k8s1
-          image: kirtishukla786/blog-app-apis-appservice # Image that will be used to containers in the cluster
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3036 # The port that the container is running on in the cluster      
+            - containerPort: 8080 # The port that the container is running on in the cluster
 
 
 ---
@@ -36,12 +31,6 @@ spec:
     app: spring-boot-k8s
   ports:
     - protocol: "TCP"
-      port: 8085 # The port that the service is running on in the cluster
-      targetPort: 7071 # The port exposed by the service
-  selector:
-    app: spring-boot-k8s1
-  ports:
-    - protocol: "TCP"
-      port: 3036 # The port that the service is running on in the cluster
-      targetPort: 3036 # The port exposed by the service    
+      port: 8080 # The port that the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service
   type: NodePort # type of the service.
