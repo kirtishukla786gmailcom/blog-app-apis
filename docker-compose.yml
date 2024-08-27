@@ -2,7 +2,7 @@ version: '3'
 services: 
   dbservice:
     container_name: mysqldb
-    image: kirtishukla786/mysql
+    image: mysql
     environment: 
       - MYSQL_ROOT_PASSWORD=mysql
     volumes:
