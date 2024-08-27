@@ -2,7 +2,7 @@ version: '3'
 services: 
   dbservice:
     container_name: mysqldb
-    image: mysql
+    image: kirtishukla786/mysql
     environment: 
       - MYSQL_ROOT_PASSWORD=mysql
     volumes:
@@ -12,6 +12,7 @@ services:
     networks:
       - blog-app-apis    
   appservice:
+    image: kirtishukla786/blog-app-apis
     build: ./
     depends_on:
       - dbservice
