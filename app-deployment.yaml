@@ -14,33 +14,21 @@ spec:
     spec:
       containers:
         - name: springboot-crud-k8s
-          image: kirtishukla786/blog-app-apis
+          image: springboot-crud-k8s:1.0
           ports:
             - containerPort: 8080
           env:   # Setting Enviornmental Variables
             - name: DB_HOST   # Setting Database host address from configMap
-              valueFrom :
-                configMapKeyRef :
-                  name : db-config
-                  key :  host
+              value: mysql
 
             - name: DB_NAME  # Setting Database name from configMap
-              valueFrom :
-                configMapKeyRef :
-                  name : db-config
-                  key :  dbName
+              value: blog_app_apis
 
             - name: DB_USERNAME  # Setting Database username from Secret
-              valueFrom :
-                secretKeyRef :
-                  name : mysql-secrets
-                  key :  username
+              value: root
 
             - name: DB_PASSWORD # Setting Database password from Secret
-              valueFrom :
-                secretKeyRef :
-                  name : mysql-secrets
-                  key :  password
+              value: root
 
 ---
 
